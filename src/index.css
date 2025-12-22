@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@layer base {
+    * {
+        @apply tracking-wider;
+    }
+
+    input, button {
+        @apply text-[12px] p-2 rounded-xl tracking-wider shadow-lg shadow-neutral-200 focus:outline-0 transition-all;
+    }
+
+    button {
+        @apply hover:cursor-pointer hover:opacity-90;
+    }
+
+    p {
+        @apply text-[12px];
+    }
+}
+
+@layer components {
+    #root {
+        @apply flex-center flex-col min-h-screen bg-gray-100;
+    }
+
+    #logo {
+        @apply text-2xl opacity-80 transition-all text-shadow-sm hover:opacity-100 cursor-pointer;
+    }
+
+    #search-bar {
+        @apply flex-center gap-2.5 mt-5;
+    }
+
+    #search-bar > input {
+        @apply bg-white min-w-[300px];
+    }
+
+    #search-bar > button {
+        @apply bg-[#121212] text-white;
+    }
+
+    .query-message {
+        @apply mt-10;
+    }
+
+    .movie-grid {
+        @apply grid-center my-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ;
+    }
+
+    .card {
+        @apply rounded-xl bg-white p-3 shadow-lg shadow-neutral-200;
+    }
+
+    .movie-grid .card {
+        @apply w-[150px] flex-list flex-col transition-all hover:translate-y-[-5px] gap-2 hover:cursor-pointer;
+    }
+
+    .movie-grid .card img {
+        @apply w-100 h-[150px] object-cover text-[12px];
+    }
+
+    .movie-grid .card h5 {
+        @apply text-[13px] font-semibold;
+    }
+
+    .failed {
+        @apply text-red-950 mt-6 p-3;
+    }
+
+    .pagination-info {
+        @apply my-2 text-[10px];
+    }
+
+    .pagination {
+        @apply flex-center gap-1.5;
+    }
+
+    .pagination button {
+        @apply enabled:bg-[#fafafa] disabled:hover:cursor-default;
+    }
+}
+
+@utility flex-center {
+    @apply flex justify-center items-center;
+}
+
+@utility flex-list {
+    @apply flex flex-col items-center;
+}
+
+@utility grid-center {
+    @apply grid gap-3;
+}
