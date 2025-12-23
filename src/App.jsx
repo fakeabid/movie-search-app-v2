@@ -10,6 +10,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1)
   const [state, setState] = useState('idle')
   const [totalResults, setTotalResults] = useState(0)
+  const [watchList, setWatchList] = useState(() => {
+    const saved = localStorage.getItem('movieWatchlist')
+    return saved ? JSON.parse(saved) : []
+  })
 
   async function getMovies(searchTerm, currentPage) {
     setState('loading')
@@ -45,9 +49,13 @@ function App() {
     }
   }, [searchTerm, currentPage])
 
+  useEffect(() => {
+    localStorage.setItem('movieWatchlist', JSON.stringify(watchList))
+  }, [watchList])
+
   return (
     <>
-      <Header />
+      <Header setState={setState}/>
       <SearchBar setSearchTerm={setSearchTerm} setCurrentPage={setCurrentPage} />
       {state === 'loading' && 
         <div className="flex justify-center items-center py-20">
@@ -56,7 +64,7 @@ function App() {
       }
       {state === 'success' &&
         <>
-          <MovieGrid searchTerm={searchTerm} movies={movies}/>
+          <MovieGrid searchTerm={searchTerm} movies={movies} watchList={watchList} setWatchList={setWatchList}/>
           <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalResults={totalResults}/>
         </>
       }

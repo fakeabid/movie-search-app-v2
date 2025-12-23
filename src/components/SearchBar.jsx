@@ -13,7 +13,7 @@ export default function SearchBar(props) {
         <>
             <form id='search-bar' action={validateSearch}>
                 <input type="text" aria-label="movie name" name='movie-query' />
-                <button type='submit' aria-label="search movie">Search</button>
+                <button type='submit' aria-label="search movie"><i className="bi bi-search"></i></button>
             </form>
         </>
     )

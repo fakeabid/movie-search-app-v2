@@ -36,7 +36,7 @@
     }
 
     #search-bar > button {
-        @apply bg-[#121212] text-white;
+        @apply bg-[#121212] text-white min-w-[35px];
     }
 
     .query-message {
@@ -52,7 +52,11 @@
     }
 
     .movie-grid .card {
-        @apply w-[150px] flex-list flex-col transition-all hover:translate-y-[-5px] gap-2 hover:cursor-pointer;
+        @apply w-[150px] flex-list flex-col transition-all hover:translate-y-[-5px] gap-2 relative overflow-hidden;
+    }
+
+    .movie-grid .card > .wishlist-btn {
+        @apply bg-blue-600 shadow-gray-800 text-white p-[2px] w-[30px] h-[30px] absolute right-2 top-2 hover:opacity-100 has-[.bi-check-lg]:bg-green-600 transition-all;
     }
 
     .movie-grid .card img {
