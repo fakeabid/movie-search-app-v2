@@ -29,7 +29,7 @@ export default function MovieCard(props) {
     return (
         <>
             <div className="card">
-                <button className="wishlist-btn" onClick={() => editWatchList(props.id)} aria-label={isWatchListed ? "Remove from watchlist" : "Add to watchlist"}>
+                <button className="watchlist-btn" onClick={() => editWatchList(props.id)} aria-label={isWatchListed ? "Remove from watchlist" : "Add to watchlist"}>
                     {isWatchListed ? <i className="bi bi-check-lg"></i> : <i className="bi bi-plus-lg"></i>}
                 </button>
                 <img src={props.poster !== 'N/A' ? props.poster : '/src/assets/default.jpg'} alt={'Poster of '+props.title} />

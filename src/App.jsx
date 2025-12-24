@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
+import { Routes, Route } from "react-router";
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import MovieGrid from './components/MovieGrid'
 import Pagination from './components/Pagination'
+import WatchList from './pages/Watchlist'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -55,26 +57,32 @@ function App() {
 
   return (
     <>
-      <Header setState={setState}/>
-      <SearchBar setSearchTerm={setSearchTerm} setCurrentPage={setCurrentPage} />
-      {state === 'loading' && 
-        <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-black-600"></div>
-        </div>
-      }
-      {state === 'success' &&
-        <>
-          <MovieGrid searchTerm={searchTerm} movies={movies} watchList={watchList} setWatchList={setWatchList}/>
-          <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalResults={totalResults}/>
-        </>
-      }
-      {state === 'error' &&
-        <>
-          <p className='failed'>No movies found for "{searchTerm}".</p>
-          <p className='opacity-50 -mt-1'>Please try a different keyword.</p>
-        </>
-      }
-
+      <Routes>
+        <Route path="/watchlist" element={<WatchList watchList={watchList} setWatchList={setWatchList} />} />
+        <Route path="/" element={
+          <>
+            <Header setState={setState}/>
+            <SearchBar setSearchTerm={setSearchTerm} setCurrentPage={setCurrentPage} />
+            {state === 'loading' && 
+              <div className="flex justify-center items-center py-20">
+                <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-black-600"></div>
+              </div>
+            }
+            {state === 'success' &&
+              <>
+                <MovieGrid searchTerm={searchTerm} movies={movies} watchList={watchList} setWatchList={setWatchList}/>
+                <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalResults={totalResults}/>
+              </>
+            }
+            {state === 'error' &&
+              <>
+                <p className='failed'>No movies found for "{searchTerm}".</p>
+                <p className='opacity-50 -mt-1'>Please try a different keyword.</p>
+              </>
+            }
+          </>
+        } />
+      </Routes>
     </>
   )
 }

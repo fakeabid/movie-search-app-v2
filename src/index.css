@@ -16,6 +16,10 @@
     p {
         @apply text-[12px];
     }
+
+    h1 {
+        @apply text-[20px];
+    }
 }
 
 @layer components {
@@ -27,6 +31,10 @@
         @apply text-2xl opacity-80 transition-all text-shadow-sm hover:opacity-100 cursor-pointer;
     }
 
+    .watchlist-btn-main {
+        @apply bg-[#121212] shadow-gray-400 text-white text-[16px] p-1.5 w-[35px] h-[35px] absolute right-5 top-5 overflow-hidden transition-all;
+    }
+
     #search-bar {
         @apply flex-center gap-2.5 mt-5;
     }
@@ -36,7 +44,7 @@
     }
 
     #search-bar > button {
-        @apply bg-[#121212] text-white min-w-[35px];
+        @apply bg-[#121212] text-white min-w-[35px] shadow-gray-400;
     }
 
     .query-message {
@@ -55,7 +63,7 @@
         @apply w-[150px] flex-list flex-col transition-all hover:translate-y-[-5px] gap-2 relative overflow-hidden;
     }
 
-    .movie-grid .card > .wishlist-btn {
+    .movie-grid .card > .watchlist-btn {
         @apply bg-blue-600 shadow-gray-800 text-white p-[2px] w-[30px] h-[30px] absolute right-2 top-2 hover:opacity-100 has-[.bi-check-lg]:bg-green-600 transition-all;
     }
 
