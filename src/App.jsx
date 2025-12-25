@@ -4,7 +4,7 @@ import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import MovieGrid from './components/MovieGrid'
 import Pagination from './components/Pagination'
-import WatchList from './pages/Watchlist'
+import WatchList from './pages/WatchList'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("")
