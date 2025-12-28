@@ -1,4 +1,4 @@
-# 🎬 React Movie App
+# 🎬 Movie Archive V2
 
 A modern movie search application built with React and Tailwind CSS.  
 The app allows users to search for movies, browse paginated results, manage a persistent watchlist, and view movie details in an interactive modal.
