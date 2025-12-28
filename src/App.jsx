@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar'
 import MovieGrid from './components/MovieGrid'
 import Pagination from './components/Pagination'
 import WatchList from './pages/WatchList'
+import MovieDetailsModal from './components/MovieDetailsModal'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -73,7 +74,7 @@ function App() {
             <Header setState={setState}/>
             <SearchBar setSearchTerm={setSearchTerm} setCurrentPage={setCurrentPage} />
             {state === 'loading' && 
-              <div className="flex justify-center items-center py-20">
+              <div className="flex-center py-20">
                 <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-black-600"></div>
               </div>
             }
@@ -99,18 +100,12 @@ function App() {
         } />
       </Routes>
       {selectedMovie && (
-        <div className="modal-overlay" onClick={() => setSelectedMovie(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setSelectedMovie(null)}>
-              <i className="bi bi-x"></i>
-            </button>
-            <div className="modal-details">
-                <h2 className="text-xl font-bold">{selectedMovie.title}</h2>
-                <p>Year: {selectedMovie.year}</p>
-            </div>
-            <img src={selectedMovie.poster !== 'N/A' ? selectedMovie.poster : '/src/assets/default.jpg'} alt={selectedMovie.title} className='movie-poster' />
-          </div>
-        </div>
+        <MovieDetailsModal
+          movie={selectedMovie}
+          onClose={() => setSelectedMovie(null)}
+          watchList={watchList}
+          setWatchList={setWatchList}
+        />
       )}
     </>
   )

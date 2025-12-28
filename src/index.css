@@ -24,19 +24,22 @@
 
 @layer components {
     #root {
-        @apply flex-center flex-col min-h-screen bg-gray-100;
+        @apply flex-center flex-col min-h-screen bg-gray-100 overflow-hidden;
     }
 
     #logo {
-        @apply text-2xl opacity-80 transition-all text-shadow-sm hover:opacity-100 cursor-pointer;
+        @apply text-2xl opacity-80 transition-all text-shadow-sm hover:opacity-100 cursor-pointer z-40;
+        animation: zoomOut 0.3s ease-in-out;
     }
 
     .watchlist-btn-main {
         @apply bg-[#121212] shadow-lg shadow-gray-400 text-white text-[16px] p-1.5 w-[35px] h-[35px] absolute right-5 top-5 overflow-hidden transition-all;
+        animation: fadeIn 0.5s ease-out;
     }
 
     #search-bar {
-        @apply flex-center gap-2.5 mt-5;
+        @apply flex-center gap-2.5 mt-5 z-30;
+        animation: slideUp 0.5s ease-in-out;
     }
 
     #search-bar > input {
@@ -60,11 +63,13 @@
     }
 
     .movie-grid .card {
-        @apply w-[150px] flex-list flex-col transition-all hover:translate-y-[-5px] gap-2 relative overflow-hidden;
+        @apply w-[150px] flex-list flex-col transition-all hover:translate-y-[-5px] hover:cursor-pointer duration-300 gap-2 relative overflow-hidden;
+        animation: slideUp 0.5s ease-out;
     }
 
     .movie-grid .card > .watchlist-btn {
         @apply bg-blue-600 shadow-lg shadow-gray-800 text-white p-[2px] w-[30px] h-[30px] absolute right-2 top-2 hover:opacity-100 has-[.bi-check-lg]:bg-green-600 transition-all;
+        animation: zoomIn 0.3s ease-out;
     }
 
     .movie-grid .card img {
@@ -92,23 +97,86 @@
     }
 
     .modal-overlay {
-        @apply fixed inset-0 bg-[#00000075] flex-center z-50;
+        @apply fixed inset-0 bg-[#000000bb] flex-center flex-col z-50 p-5;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-overlay > .close-msg {
+        @apply mb-5 text-white tracking-widest;
     }
 
     .modal-content {
-        @apply bg-white rounded-2xl max-w-[500px] w-[90%] h-68 relative flex-center justify-between overflow-hidden;
+        @apply bg-white rounded-2xl max-w-[700px] w-[100%] max-h-[90vh] relative overflow-y-auto;
+        animation: slideUp 0.5s ease-out;
     }
 
-    .modal-close {
-        @apply absolute top-2 right-2 flex-center bg-black text-white text-[14px] border-none shadow-lg shadow-gray-800 w-[30px] h-[30px] rounded-[50%] hover:cursor-pointer;
+    .modal-body {
+        @apply flex flex-col gap-6 p-6 md:flex-row;
     }
 
-    .modal-content > .movie-poster {
-        @apply w-48 h-full object-cover;
+    .modal-poster {
+        @apply w-full max-w-[250px] h-auto rounded-xl object-cover;
     }
 
-    .modal-details {
-        @apply p-5 h-full
+    .model-info {
+        @apply flex-1;
+    }
+
+
+    .modal-title {
+        @apply text-2xl font-bold mb-1;
+    }
+
+    .modal-year {
+        @apply text-[#666] text-[15px] mb-4;
+    }
+
+    .modal-stats {
+        @apply flex gap-10 mb-4 bg-[#f8f9fa] rounded-lg p-4;
+    }
+
+    .stat {
+        @apply flex flex-col gap-1;
+    }
+
+    .stat-label {
+        @apply text-xs text-[#666] font-semibold;
+    }
+
+    .stat-value {
+        @apply text-sm font-bold;
+    }
+
+    .modal-section {
+        @apply mb-3 text-xs;
+    }
+
+    .modal-section strong {
+        @apply font-semibold text-[#333];
+    }
+
+    .modal-plot {
+        @apply mt-2 text-[#555] leading-5.5;
+    }
+
+    .modal-watchlist-btn {
+        @apply mt-6 w-full p-3 bg-[#2563eb] text-white text-sm flex-center gap-2 border-none rounded-xl font-semibold hover:cursor-pointer hover:-translate-y-0.5 hover:bg-[#1d4ed8] transition-all duration-300;
+    }
+
+    .modal-watchlist-btn.in-list {
+        @apply bg-[#16a34a] hover:bg-[#15803d]
+    }
+
+    .modal-error {
+        @apply py-15 px-5 text-center;
+    }
+
+    .modal-error p {
+        @apply mb-4 text-[#ef4444] font-semibold;
+    }
+
+    .modal-error button {
+        @apply bg-[#121212] text-white py-2 px-6 rounded-lg border-none hover:cursor-pointer;
     }
 }
 
@@ -122,4 +190,49 @@
 
 @utility grid-center {
     @apply grid gap-3;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        opacity: 0;
+        transform: scale(15);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
