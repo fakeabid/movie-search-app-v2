@@ -12,6 +12,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1)
   const [state, setState] = useState('idle')
   const [totalResults, setTotalResults] = useState(0)
+  const [selectedMovie, setSelectedMovie] = useState(null)
+
   const [watchList, setWatchList] = useState(() => {
     const saved = localStorage.getItem('movieWatchlist')
     return saved ? JSON.parse(saved) : []
@@ -58,7 +60,14 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/watchlist" element={<WatchList watchList={watchList} setWatchList={setWatchList} />} />
+        <Route 
+          path="/watchlist" 
+          element={
+            <WatchList 
+              watchList={watchList} 
+              setWatchList={setWatchList} 
+              onCardClick={setSelectedMovie} 
+        />}/>
         <Route path="/" element={
           <>
             <Header setState={setState}/>
@@ -70,7 +79,13 @@ function App() {
             }
             {state === 'success' &&
               <>
-                <MovieGrid searchTerm={searchTerm} movies={movies} watchList={watchList} setWatchList={setWatchList}/>
+                <MovieGrid
+                  searchTerm={searchTerm} 
+                  movies={movies} 
+                  watchList={watchList} 
+                  setWatchList={setWatchList} 
+                  onCardClick={setSelectedMovie}
+                />
                 <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalResults={totalResults}/>
               </>
             }
@@ -83,6 +98,20 @@ function App() {
           </>
         } />
       </Routes>
+      {selectedMovie && (
+        <div className="modal-overlay" onClick={() => setSelectedMovie(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedMovie(null)}>
+              <i className="bi bi-x"></i>
+            </button>
+            <div className="modal-details">
+                <h2 className="text-xl font-bold">{selectedMovie.title}</h2>
+                <p>Year: {selectedMovie.year}</p>
+            </div>
+            <img src={selectedMovie.poster !== 'N/A' ? selectedMovie.poster : '/src/assets/default.jpg'} alt={selectedMovie.title} className='movie-poster' />
+          </div>
+        </div>
+      )}
     </>
   )
 }

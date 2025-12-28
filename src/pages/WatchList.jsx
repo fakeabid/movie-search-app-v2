@@ -17,6 +17,7 @@ export default function WatchList(props) {
                 poster={movie.poster}
                 watchList={props.watchList}
                 setWatchList={props.setWatchList}
+                onCardClick={props.onCardClick}
             />
         )
     })

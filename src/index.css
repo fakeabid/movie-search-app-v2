@@ -6,7 +6,7 @@
     }
 
     input, button {
-        @apply text-[12px] p-2 rounded-xl tracking-wider shadow-lg shadow-neutral-200 focus:outline-0 transition-all;
+        @apply text-[12px] p-2 rounded-xl tracking-wider focus:outline-0 transition-all;
     }
 
     button {
@@ -32,7 +32,7 @@
     }
 
     .watchlist-btn-main {
-        @apply bg-[#121212] shadow-gray-400 text-white text-[16px] p-1.5 w-[35px] h-[35px] absolute right-5 top-5 overflow-hidden transition-all;
+        @apply bg-[#121212] shadow-lg shadow-gray-400 text-white text-[16px] p-1.5 w-[35px] h-[35px] absolute right-5 top-5 overflow-hidden transition-all;
     }
 
     #search-bar {
@@ -40,11 +40,11 @@
     }
 
     #search-bar > input {
-        @apply bg-white min-w-[300px];
+        @apply bg-white min-w-[300px] shadow-lg shadow-neutral-200;
     }
 
     #search-bar > button {
-        @apply bg-[#121212] text-white min-w-[35px] shadow-gray-400;
+        @apply bg-[#121212] text-white min-w-[35px] shadow-gray-400 shadow-lg;
     }
 
     .query-message {
@@ -64,7 +64,7 @@
     }
 
     .movie-grid .card > .watchlist-btn {
-        @apply bg-blue-600 shadow-gray-800 text-white p-[2px] w-[30px] h-[30px] absolute right-2 top-2 hover:opacity-100 has-[.bi-check-lg]:bg-green-600 transition-all;
+        @apply bg-blue-600 shadow-lg shadow-gray-800 text-white p-[2px] w-[30px] h-[30px] absolute right-2 top-2 hover:opacity-100 has-[.bi-check-lg]:bg-green-600 transition-all;
     }
 
     .movie-grid .card img {
@@ -88,7 +88,27 @@
     }
 
     .pagination button {
-        @apply enabled:bg-[#fafafa] disabled:hover:cursor-default;
+        @apply enabled:bg-[#fafafa] shadow-lg disabled:hover:cursor-default;
+    }
+
+    .modal-overlay {
+        @apply fixed inset-0 bg-[#00000075] flex-center z-50;
+    }
+
+    .modal-content {
+        @apply bg-white rounded-2xl max-w-[500px] w-[90%] h-68 relative flex-center justify-between overflow-hidden;
+    }
+
+    .modal-close {
+        @apply absolute top-2 right-2 flex-center bg-black text-white text-[14px] border-none shadow-lg shadow-gray-800 w-[30px] h-[30px] rounded-[50%] hover:cursor-pointer;
+    }
+
+    .modal-content > .movie-poster {
+        @apply w-48 h-full object-cover;
+    }
+
+    .modal-details {
+        @apply p-5 h-full
     }
 }
 

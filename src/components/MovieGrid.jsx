@@ -11,6 +11,7 @@ export default function MovieGrid(props) {
                 poster={movie.Poster}
                 watchList={props.watchList}
                 setWatchList={props.setWatchList}
+                onCardClick={props.onCardClick}
             />
         )
     })
